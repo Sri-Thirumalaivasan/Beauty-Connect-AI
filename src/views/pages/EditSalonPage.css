@@ -1,0 +1,14 @@
+.edit-salon-page { padding-bottom:80px; }
+.edit-form { display:flex; flex-direction:column; gap:32px; }
+.edit-section { background:var(--card); border:1px solid var(--border); border-radius:var(--r-lg); padding:28px; }
+.edit-section h2 { font-family:var(--font-display); font-size:18px; font-weight:600; margin-bottom:20px; }
+.edit-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media(max-width:600px) { .edit-grid { grid-template-columns:1fr; } }
+.tag-select { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.tag-pill { padding:7px 16px; border-radius:var(--r-full); font-size:13px; background:rgba(255,255,255,0.05); border:1.5px solid var(--border); color:var(--muted); cursor:pointer; transition:var(--t); }
+.tag-pill:hover { border-color:var(--pink); color:var(--pink); }
+.tag-pill.active { background:rgba(255,79,139,0.12); border-color:var(--pink); color:var(--pink); }
+.service-edit-row { display:flex; gap:12px; align-items:flex-end; margin-bottom:12px; flex-wrap:wrap; }
+.remove-svc-btn { background:none; border:1.5px solid var(--border); border-radius:var(--r-sm); color:var(--muted); width:40px; height:42px; font-size:14px; flex-shrink:0; transition:var(--t); }
+.remove-svc-btn:hover { border-color:var(--error); color:var(--error); }
+.edit-actions { display:flex; justify-content:flex-end; gap:12px; }

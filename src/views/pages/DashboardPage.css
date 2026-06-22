@@ -1,0 +1,99 @@
+.dashboard-stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin:30px 0;
+}
+
+.stat-card{
+    background:#14001d;
+    border:1px solid rgba(255,255,255,.1);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.stat-card h3{
+    font-size:40px;
+    color:#ff4f8b;
+    margin-bottom:10px;
+}
+
+.dashboard-card{
+    background:#14001d;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:30px;
+}
+
+.dashboard-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.dashboard-table th{
+    background:#1d022b;
+    color:white;
+    padding:15px;
+    text-align:left;
+}
+
+.dashboard-table td{
+    padding:15px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.dashboard-table tr:hover{
+    background:rgba(255,79,139,.05);
+}
+
+.status-confirmed{
+    background:#1f8f50;
+    color:white;
+    padding:6px 15px;
+    border-radius:30px;
+}
+
+.favourites-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:25px;
+}
+
+.fav-card{
+    position:relative;
+    background:#1a0225;
+    border-radius:20px;
+    overflow:hidden;
+    padding:15px;
+}
+
+.fav-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.fav-card h3{
+    margin-top:15px;
+}
+
+.remove-fav-btn{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#ff4f8b;
+    color:white;
+    cursor:pointer;
+}
+
+.remove-fav-btn:hover{
+    background:red;
+}
