@@ -6,7 +6,7 @@
  */
 import {
   collection, getDocs, getDoc, doc,
-  addDoc, query, where, orderBy, serverTimestamp,
+  addDoc, query, where, serverTimestamp,
 } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 import { MOCK_SALONS } from "../api/mockData";
