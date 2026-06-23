@@ -231,7 +231,7 @@ export default function SalonDetailPage() {
             <h2>Customer Reviews</h2>
 
             {
-              reviews.length === 0
+              localReviews.length === 0
                 ?
                 <p>No reviews yet.</p>
                 :
@@ -243,7 +243,7 @@ export default function SalonDetailPage() {
                   }}
                 >
 
-                  {reviews.map(r => (
+                  {localReviews.map(r => (
                     <div
                       key={r.id}
                       style={{
