@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AuthProvider } from "./controllers/AuthController";
+import { ThemeProvider } from "./controllers/ThemeController";
 import Navbar       from "./views/components/layout/Navbar";
 import PrivateRoute from "./views/components/common/PrivateRoute";
 import AdminRoute   from "./views/components/common/AdminRoute";
@@ -88,10 +89,12 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

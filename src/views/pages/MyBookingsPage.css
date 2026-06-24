@@ -1,17 +1,57 @@
 .bookings-page { padding-bottom:0; }
+
 .bookings-header { margin:48px 0 28px; }
-.bookings-header h1 { font-family:var(--font-display); font-size:34px; font-weight:700; margin-bottom:6px; }
+.bookings-header h1 {
+  font-family:var(--font-display); font-size:34px;
+  font-weight:700; margin-bottom:6px; color:var(--text);
+}
 .bookings-header p { color:var(--muted); }
+
 .bookings-list { display:flex; flex-direction:column; gap:14px; margin-bottom:60px; }
-.booking-item { display:flex; justify-content:space-between; align-items:center; gap:20px; background:var(--card); border:1px solid var(--border); border-radius:var(--r-lg); padding:24px 28px; flex-wrap:wrap; transition:border-color var(--t), transform var(--t); }
-.booking-item:hover { border-color:rgba(255,79,139,0.25); transform:translateX(4px); }
+.booking-item {
+  display:flex; justify-content:space-between; align-items:center;
+  gap:20px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:24px 28px; flex-wrap:wrap;
+  transition:border-color var(--t), transform var(--t), background 0.3s ease, box-shadow var(--t);
+}
+.booking-item:hover {
+  border-color:var(--border-hi);
+  transform:translateX(4px);
+  box-shadow:var(--shadow-card);
+}
+[data-theme="light"] .booking-item:hover {
+  box-shadow: 0 4px 20px rgba(232,53,106,0.07);
+}
+
 .booking-item-left { display:flex; flex-direction:column; gap:6px; }
-.booking-item-left h3 { font-family:var(--font-display); font-size:19px; font-weight:600; }
+.booking-item-left h3 {
+  font-family:var(--font-display); font-size:19px;
+  font-weight:600; color:var(--text);
+}
 .bk-area { font-size:13px; color:var(--muted); }
 .bk-svc { font-size:14px; color:var(--pink); font-weight:500; }
+
 .booking-item-right { display:flex; align-items:center; gap:28px; flex-wrap:wrap; }
 .bk-date { display:flex; flex-direction:column; gap:2px; }
-.bk-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; }
-.bk-date strong { font-size:14px; font-weight:600; }
-.bk-status { padding:5px 14px; border-radius:var(--r-full); font-size:12px; font-weight:600; }
-.bk-status.confirmed { background:rgba(52,211,153,0.12); color:var(--success); border:1px solid rgba(52,211,153,0.25); }
+.bk-label {
+  font-size:11px; color:var(--muted);
+  text-transform:uppercase; letter-spacing:0.06em; font-weight:600;
+}
+.bk-date strong { font-size:14px; font-weight:600; color:var(--text); }
+
+.bk-status {
+  padding:5px 14px; border-radius:var(--r-full);
+  font-size:12px; font-weight:600;
+}
+.bk-status.confirmed {
+  background:rgba(52,211,153,0.12); color:var(--success);
+  border:1px solid rgba(52,211,153,0.25);
+}
+.bk-status.pending {
+  background:rgba(245,166,35,0.12); color:var(--gold);
+  border:1px solid rgba(245,166,35,0.25);
+}
+.bk-status.cancelled {
+  background:rgba(248,113,113,0.12); color:var(--error);
+  border:1px solid rgba(248,113,113,0.25);
+}

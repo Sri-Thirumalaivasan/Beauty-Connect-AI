@@ -1,91 +1,119 @@
 .navbar {
   position: fixed; top:0; left:0; right:0; z-index:200; height:68px;
-  background: rgba(6,0,15,0.82);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border-bottom: 1px solid rgba(255,79,139,0.1);
-  transition: background 0.3s, box-shadow 0.3s;
+  background: var(--nav-bg);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid var(--nav-border);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .navbar.scrolled {
-  background: rgba(6,0,15,0.97);
-  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  background: var(--nav-bg-scrolled);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.18);
+  border-bottom-color: var(--border-hi);
 }
+[data-theme="light"] .navbar.scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
 .navbar-inner {
   display:flex; align-items:center; justify-content:space-between;
   height:68px; gap:16px;
 }
 
-/* Logo */
+/* ── Logo ── */
 .navbar-logo { display:flex; align-items:center; gap:8px; flex-shrink:0; text-decoration:none; z-index:201; }
-.logo-glamr  { font-family:var(--font-display); font-size:30px; font-weight:700; font-style:italic; color:var(--text); letter-spacing:-0.01em; }
+.logo-glamr  {
+  font-family:var(--font-display); font-size:28px; font-weight:700; font-style:italic;
+  color:var(--text); letter-spacing:-0.01em;
+  transition: color 0.3s ease;
+}
 .logo-city   {
   font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
   color:var(--pink); padding:2px 8px;
-  border:1px solid rgba(255,79,139,0.35); border-radius:var(--r-full);
+  border:1px solid var(--border-hi); border-radius:var(--r-full);
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Desktop nav links */
+/* ── Desktop nav links ── */
 .navbar-links { display:flex; align-items:center; gap:4px; }
 .navbar-links a {
   font-size:13px; font-weight:500; color:var(--muted);
   padding:7px 14px; border-radius:var(--r-full);
   transition:var(--t); text-decoration:none; white-space:nowrap;
 }
-.navbar-links a:hover { color:var(--text); background:rgba(255,255,255,0.06); }
-.navbar-links a.active { color:var(--text); background:rgba(255,79,139,0.12); }
-.nav-ai-link  { color:var(--pink)!important; background:rgba(255,79,139,0.08)!important; border:1px solid rgba(255,79,139,0.2)!important; }
-.nav-ai-link:hover { background:rgba(255,79,139,0.16)!important; }
+.navbar-links a:hover { color:var(--text); background:var(--pink-glow); }
+.navbar-links a.active {
+  color:var(--text); background:var(--pink-glow);
+  box-shadow: 0 0 0 1px var(--border-hi);
+}
+.nav-ai-link  {
+  color:var(--pink)!important;
+  background:var(--pink-glow)!important;
+  border:1px solid var(--border-hi)!important;
+}
+.nav-ai-link:hover { background:rgba(255,79,139,0.2)!important; }
 .nav-cta {
   margin-left:8px; padding:9px 22px!important; font-size:13px!important; font-weight:600!important;
   background:linear-gradient(135deg,var(--pink),var(--pink-dark))!important;
   color:#fff!important; border-radius:var(--r-full)!important;
-  box-shadow:0 4px 16px rgba(255,79,139,0.35); border:none!important;
+  box-shadow:var(--shadow-pink); border:none!important;
   transition:box-shadow var(--t),transform var(--t)!important;
 }
 .nav-cta:hover { box-shadow:0 6px 24px rgba(255,79,139,0.5)!important; transform:translateY(-1px)!important; }
 
-/* ── User avatar + dropdown ──
-   Key fix: use :hover on .nav-user-menu to show dropdown.
-   :focus-within keeps it open while interacting with items inside.
-   pointer-events on dropdown prevents accidental closure. */
+/* ── Right-side controls (theme toggle + hamburger) ── */
+.navbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Desktop: show toggle here, hide in links */
+.theme-toggle-mobile  { display: none; }
+.theme-toggle-desktop { display: flex; }
+
+/* ── User avatar + dropdown ── */
 .nav-user-menu {
   position: relative;
-  /* Give it a little padding-bottom so moving mouse from
-     avatar down to dropdown doesn't close it */
   padding-bottom: 8px;
 }
 .nav-avatar {
-  width:34px; height:34px; border-radius:50%;
-  background:linear-gradient(135deg,var(--pink),#c2185b);
+  width:36px; height:36px; border-radius:50%;
+  background:linear-gradient(135deg,var(--pink),var(--pink-dark));
   display:flex; align-items:center; justify-content:center;
   font-size:13px; font-weight:700; cursor:pointer;
-  border:2px solid rgba(255,79,139,0.3); color:#fff;
+  border:2px solid rgba(255,79,139,0.35); color:#fff;
   user-select:none; position:relative; z-index:1;
+  box-shadow: 0 2px 12px rgba(255,79,139,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-avatar:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 18px rgba(255,79,139,0.45);
 }
 
-/* Dropdown — hidden by default */
+/* Dropdown */
 .nav-dropdown {
-  display: flex;           /* always flex, visibility controlled by opacity/pointer-events */
+  display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(100% - 2px);  /* overlaps slightly so mouse movement doesn't gap */
+  top: calc(100% - 2px);
   right: 0;
   background: var(--card);
   border: 1px solid var(--border-hi);
   border-radius: var(--r-md);
   padding: 8px;
-  min-width: 180px;
-  box-shadow: var(--shadow);
+  min-width: 190px;
+  box-shadow: var(--shadow), 0 0 0 1px var(--border);
   z-index: 300;
-  /* Hidden state */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px);
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
   pointer-events: none;
+  backdrop-filter: blur(16px);
 }
-
-/* Show on hover of parent OR when focused inside */
 .nav-user-menu:hover .nav-dropdown,
 .nav-user-menu:focus-within .nav-dropdown {
   opacity: 1;
@@ -107,9 +135,9 @@
   text-decoration:none; width:100%; cursor:pointer; display:block;
 }
 .nav-dropdown a:hover,
-.nav-dropdown button:hover { background:rgba(255,255,255,0.06); color:var(--pink); }
+.nav-dropdown button:hover { background:var(--pink-glow); color:var(--pink); }
 
-/* Hamburger */
+/* ── Hamburger ── */
 .navbar-hamburger {
   display:none; flex-direction:column; gap:5px;
   background:none; border:none; padding:6px; cursor:pointer; z-index:201;
@@ -122,22 +150,39 @@
 .navbar-hamburger.open span:nth-child(2) { opacity:0; }
 .navbar-hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
-/* Mobile */
+/* ══════════════════════════════════════════
+   MOBILE
+══════════════════════════════════════════ */
 @media (max-width:900px) {
   .navbar-hamburger { display:flex; }
+  .theme-toggle-desktop { display: none; }
+
   .navbar-links {
     display:none; position:fixed;
     top:68px; left:0; right:0;
-    background:rgba(6,0,15,0.98); backdrop-filter:blur(20px);
+    background:var(--mobile-menu-bg);
+    backdrop-filter:blur(24px);
     border-bottom:1px solid var(--border-hi);
     flex-direction:column; align-items:flex-start;
-    padding:16px 20px 24px; gap:4px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.5);
+    padding:16px 20px 28px; gap:4px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.3);
     z-index:199; overflow-y:auto; max-height:calc(100vh - 68px);
   }
   .navbar-links.open { display:flex; }
   .navbar-links a { width:100%; padding:12px 16px; border-radius:var(--r-sm); font-size:15px; }
   .nav-cta { width:100%!important; margin-left:0!important; text-align:center!important; margin-top:8px!important; }
+
+  /* Theme toggle inside mobile menu */
+  .theme-toggle-mobile {
+    display: flex;
+    margin-top: 8px;
+    width: 100%;
+    border-radius: var(--r-sm);
+    height: 44px;
+    font-size: 14px;
+    gap: 10px;
+    justify-content: center;
+  }
 
   /* On mobile, dropdown is always visible when menu is open */
   .nav-user-menu { width:100%; padding-bottom:0; }
@@ -145,9 +190,10 @@
   .nav-dropdown {
     display:flex!important; position:static; opacity:1!important;
     visibility:visible!important; transform:none!important;
-    pointer-events:auto!important; background:rgba(255,255,255,0.04);
+    pointer-events:auto!important; background:var(--pink-glow);
     border:1px solid var(--border); border-radius:var(--r-sm);
     padding:6px; margin-top:4px; box-shadow:none; width:100%;
+    backdrop-filter: none;
   }
 }
 
